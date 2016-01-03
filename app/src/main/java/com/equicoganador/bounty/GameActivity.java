@@ -86,7 +86,6 @@ public class GameActivity extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         gameButton = (ImageButton)findViewById(R.id.gameButton);
         gameButton.setVisibility(View.INVISIBLE);

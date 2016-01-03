@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -12,8 +13,66 @@
     tools:context="com.equicoganador.bounty.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@mipmap/ic_launcher"
+        android:id="@+id/imageView"
+        android:layout_marginStart="41dp"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignParentStart="true" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:textSize="@dimen/title"
+        android:textColor="@color/fontTitle"
+        android:text="@string/title"
+        android:id="@+id/textView"
+        android:layout_marginTop="73dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/imageView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/title"
+        android:textColor="@color/fontTitle"
+        android:text="@string/hunter"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/textView"
+        android:layout_alignEnd="@+id/textView" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nickname"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/imageView"
+        android:layout_alignEnd="@+id/textView2"
+        android:hint="Hunter name"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/phone"
+        android:layout_below="@+id/nickname"
+        android:layout_marginTop="45dp"
+        android:layout_alignStart="@+id/nickname"
+        android:layout_alignEnd="@+id/textView2"
+        android:hint="Phone number"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:id="@+id/signup"
+        android:layout_below="@+id/phone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:onClick="signUp"/>
+
+
 </RelativeLayout>

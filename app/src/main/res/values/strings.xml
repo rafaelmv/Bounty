@@ -2,4 +2,6 @@
     <string name="app_name">Bounty</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_game">GameActivity</string>
+    <string name="title">Bounty</string>
+    <string name="hunter">Hunter</string>
 </resources>
