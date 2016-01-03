@@ -12,4 +12,19 @@
     tools:context="com.equicoganador.bounty.TrophiesActivity"
     tools:showIn="@layout/activity_trophies">
 
+    <TextView
+        android:text="Trofeos"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/trophies_text"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/trophies_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
+
 </RelativeLayout>
