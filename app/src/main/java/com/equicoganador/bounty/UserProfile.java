@@ -2,6 +2,8 @@ package com.equicoganador.bounty;
 
 import android.app.Activity;
 import android.content.Context;
+import android.location.Location;
+import android.location.LocationManager;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -42,6 +44,7 @@ public class UserProfile extends Activity {
 
     private List<String[]> matches;
 
+    private String userId;
     private String userImageUrl;
     private String username;
     private String userMoney;
@@ -55,11 +58,68 @@ public class UserProfile extends Activity {
     @Bind(R.id.user_money)
     TextView userMoneyText;
 
+    private void sendPosition(){
+
+        String url = new UrlClass().baseUrl + "api/players/" + userId;
+        //String url = baseUrl + "api/players/" + "813e3143ca2af77b0921100a78676176";
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try{
+                            Log.d("-----------------", response);
+                        }catch (Exception e){
+                            Log.d("Errors", e.toString());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("Error", error.toString());
+                    }
+                }
+        ){
+
+            @Override
+            protected Map<String, String> getParams() {
+
+                Map<String, String> params = new HashMap<String, String>();
+
+                Location location;
+
+                LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+
+
+                /*location = lm.getLastKnownLocation(provider_info);
+                if (location != null) {
+                    latitude = location.getLatitude();
+                    longitude = location.getLongitude();
+                }
+
+
+                params.put("nickname", username);
+                params.put("phone", phone);
+
+                return params;*/
+            }
+        };
+        queue.add(stringRequest);
+
+    }
 
     private void paintUserData(){
         Picasso.with(context)
                 .load(userImageUrl)
-                .resize(200, 200)
+
+                .resize(userImage.getWidth(), userImage.getHeight())
+
+
                 .centerCrop()
                 .into(userImage);
 
@@ -70,8 +130,8 @@ public class UserProfile extends Activity {
     private void requestUserInfo(String userId){
 
         String baseUrl = "http://19920ad2.ngrok.io/";
-        //String url = baseUrl + "api/players/" + userId;
-        String url = baseUrl + "api/players/" + "813e3143ca2af77b0921100a78676176";
+        String url = baseUrl + "api/players/" + userId;
+        //String url = baseUrl + "api/players/" + "813e3143ca2af77b0921100a78676176";
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -82,7 +142,6 @@ public class UserProfile extends Activity {
                     @Override
                     public void onResponse(String response) {
                         try{
-                            Log.d("**######**", response);
 
                             JSONObject jsonResponse = new JSONObject(response);
 
@@ -91,10 +150,15 @@ public class UserProfile extends Activity {
 
                             org.json.JSONArray pendingMatches = jsonResponse.getJSONArray("pending_matches");
 
+
                             /*for (int i=0; i < pendingMatches.length(); i++){
                                 match = []
                                 matches.add()
                             }*/
+
+                            //username = "Megaman X";
+                            //userMoney = "$300";
+                            userImageUrl= "https://slack-files.com/files-tmb/T0HJWN9MM-F0HKB0B4M-2c5271defb/preview_1024.png";
 
                             paintUserData();
 
@@ -148,6 +212,21 @@ public class UserProfile extends Activity {
 
         String userId = getIntent().getStringExtra("userId");
         requestUserInfo(userId);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                while (true) {
+                    try {
+                        Thread.sleep(10000);
+
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
+                }
+            }
+        }).start();
 
     }
 
