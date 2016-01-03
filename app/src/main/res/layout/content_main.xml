@@ -36,7 +36,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/title"
         android:textColor="@color/fontTitle"
         android:text="@string/hunter"
         android:id="@+id/textView2"
@@ -68,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Up"
-        android:id="@+id/signup"
+        android:id="@+id/signupBtn"
         android:layout_below="@+id/phone"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="48dp"
