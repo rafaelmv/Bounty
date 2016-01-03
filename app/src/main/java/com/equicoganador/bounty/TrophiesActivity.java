@@ -92,47 +92,47 @@ public class TrophiesActivity extends AppCompatActivity {
 
 
         Picasso.with(this)
-                .load("http://i.imgur.com/imd4cMV.png")
+                .load("http://104.131.78.147/images/zura.png")
                 .resize(200, 200)
                 .into(monster);
 
         Picasso.with(this)
-                .load("http://i.imgur.com/imd4cMV.png")
+                .load("http://104.131.78.147/images/coffi.png")
                 .resize(200, 200)
                 .into(monster2);
 
         Picasso.with(this)
-                .load("http://i.imgur.com/imd4cMV.png")
+                .load("http://104.131.78.147/images/rafa.png")
                 .resize(200, 200)
                 .into(monster3);
 
         Picasso.with(this)
-                .load("http://i.imgur.com/imd4cMV.png")
+                .load("http://104.131.78.147/images/mike.png")
                 .resize(200, 200)
                 .into(monster4);
 
         Picasso.with(this)
-                .load("http://i.imgur.com/imd4cMV.png")
+                .load("http://104.131.78.147/images/antonio.png")
                 .resize(200, 200)
                 .into(monster5);
 
         Picasso.with(this)
-                .load("http://i.imgur.com/imd4cMV.png")
+                .load("http://104.131.78.147/images/carballo.png")
                 .resize(200, 200)
                 .into(monster6);
 
         Picasso.with(this)
-                .load("http://i.imgur.com/imd4cMV.png")
+                .load("http://104.131.78.147/images/chemonkey.png")
                 .resize(200, 200)
                 .into(monster7);
 
         Picasso.with(this)
-                .load("http://i.imgur.com/imd4cMV.png")
+                .load("http://104.131.78.147/images/vic.png")
                 .resize(200, 200)
                 .into(monster8);
 
         Picasso.with(this)
-                .load("http://i.imgur.com/imd4cMV.png")
+                .load("http://104.131.78.147/images/atthack.png")
                 .resize(200, 200)
                 .into(monster9);
 
