@@ -53,8 +53,7 @@ public class MainActivity extends Activity {
     @OnClick(R.id.signupBtn)
     public void loginUserRequest(){
 
-        String baseUrl = "http://19920ad2.ngrok.io/";
-        String url = baseUrl + "api/players";
+        String url = new UrlClass().baseUrl + "players";
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -83,7 +82,6 @@ public class MainActivity extends Activity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d("Error", error.toString());
-                        Toast.makeText(context, "Servicio no disponible", Toast.LENGTH_LONG).show();
                         intent.putExtra("userId", "No disponible");
                         startActivity(intent);
                     }

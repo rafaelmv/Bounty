@@ -36,7 +36,7 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
 
     private void sendDismissScore(final String matchId, Context context){
 
-        String url = "/api/matches/" + matchId;
+        String url = new UrlClass().baseUrl + matchId;
 
         RequestQueue queue = Volley.newRequestQueue(context);
 
@@ -113,6 +113,7 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
                 Intent intent = new Intent(context, GameActivity.class);
                 intent.putExtra("matchId", current[3]);
                 intent.putExtra("username", current[1]);
+                intent.putExtra("image", current[0]);
                 context.startActivity(intent);
             }
         });

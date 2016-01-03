@@ -5,6 +5,6 @@ package com.equicoganador.bounty;
  */
 public class UrlClass {
 
-    String baseUrl = "http://19920ad2.ngrok.io/";
+    String baseUrl = "http://104.131.78.147/api/";
 
 }

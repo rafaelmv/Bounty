@@ -63,7 +63,7 @@ public class UserProfile extends Activity {
 
     private void sendPosition(){
 
-        String url = new UrlClass().baseUrl + "api/players/" + userId;
+        String url = new UrlClass().baseUrl + "players/" + userId;
         //String url = baseUrl + "api/players/" + "813e3143ca2af77b0921100a78676176";
 
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -87,7 +87,18 @@ public class UserProfile extends Activity {
                         Log.d("Error", error.toString());
                     }
                 }
-        );
+        ){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+
+                params.put("latitude", "20.659866");
+                params.put("longitude", "-103.344064");
+
+                return params;
+            }
+        };
         queue.add(stringRequest);
 
     }
@@ -95,10 +106,7 @@ public class UserProfile extends Activity {
     private void paintUserData(){
         Picasso.with(context)
                 .load(userImageUrl)
-
                 .resize(userImage.getWidth(), userImage.getHeight())
-
-
                 .centerCrop()
                 .into(userImage);
 
@@ -108,8 +116,7 @@ public class UserProfile extends Activity {
 
     private void requestUserInfo(String userId){
 
-        String baseUrl = "http://19920ad2.ngrok.io/";
-        String url = baseUrl + "api/players/" + userId;
+        String url = new UrlClass().baseUrl + "players/" + userId;
         //String url = baseUrl + "api/players/" + "813e3143ca2af77b0921100a78676176";
 
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -137,7 +144,7 @@ public class UserProfile extends Activity {
 
                             //username = "Megaman X";
                             //userMoney = "$300";
-                            userImageUrl= "https://slack-files.com/files-tmb/T0HJWN9MM-F0HKB0B4M-2c5271defb/preview_1024.png";
+                            userImageUrl= "http://104.131.78.147/images/" + "atthack.png";
 
                             paintUserData();
 
@@ -211,8 +218,47 @@ public class UserProfile extends Activity {
 
     private void initializeData(){
         matches = new ArrayList<>();
-        String obj[] = {"https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xpf1/t31.0-8/p960x960/1920994_976827462390916_7944202517600796819_o.jpg", "Juan", "monedas", "12"};
-        matches.add(obj);
+        String obj[][] =
+                {
+                        {
+                                "http://104.131.78.147/images/" + "mike.png",
+                                "Mega Hombre",
+                                "9999 monedas",
+                                "23"
+                        },
+                        {
+                                "http://104.131.78.147/images/" + "kewlz.png",
+                                "Art3mis",
+                                "89999 monedas",
+                                "40"
+                        },
+                        {
+                                "http://104.131.78.147/images/" + "bounty.png",
+                                "Percival",
+                                "8998 monedas",
+                                "1"
+                        },
+                        {
+                                "http://104.131.78.147/images/" + "vic.png",
+                                "Doku",
+                                "5000 monedas",
+                                "3"
+                        },
+                        {
+                                "http://104.131.78.147/images/" + "carballo.png",
+                                "Salander",
+                                "3987 monedas",
+                                "4"
+                        }
+                };
+
+
+        for (int i=0; i < obj.length; i++){
+            matches.add(obj[i]);
+        }
+
+
+
 
     }
 

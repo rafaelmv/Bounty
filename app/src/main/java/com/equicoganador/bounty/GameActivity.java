@@ -40,6 +40,8 @@ public class GameActivity extends Activity {
     private String matchId;
     private String userName;
 
+    private String image;
+
     private ImageButton gameButton;
     private TextView countdownText;
     private TextView tapCounterText;
@@ -51,7 +53,7 @@ public class GameActivity extends Activity {
 
     private void paintImageFromUrl(ImageButton imageButton){
         Picasso.with(this)
-                .load("http://i.imgur.com/DvpvklR.png")
+                .load(image)
                 .resize(200, 200)
                 .centerCrop()
                 .transform(new CircleTransform())
@@ -141,6 +143,8 @@ public class GameActivity extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        image = getIntent().getStringExtra("image");
 
         matchId = getIntent().getStringExtra("matchId");
         userName = getIntent().getStringExtra("username");
