@@ -2,6 +2,7 @@ package com.equicoganador.bounty;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -139,5 +141,11 @@ public class UserProfile extends Activity {
         String obj[] = {"https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xpf1/t31.0-8/p960x960/1920994_976827462390916_7944202517600796819_o.jpg", "Juan", "monedas", "12"};
         matches.add(obj);
 
+    }
+
+    public void allTrophies(View view)
+    {
+        Intent intent = new Intent(this, TrophiesActivity.class);
+        startActivity(intent);
     }
 }

@@ -42,7 +42,8 @@
         android:layout_toRightOf="@+id/user_image"
         android:layout_below="@+id/user_money"
         android:layout_width="match_parent"
-        android:layout_height="40dp" />
+        android:layout_height="40dp"
+        android:onClick="allTrophies"/>
 
 
     <android.support.v7.widget.RecyclerView
