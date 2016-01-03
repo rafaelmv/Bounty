@@ -205,7 +205,6 @@ public class GameActivity extends Activity {
                 setGameTimer(getApplicationContext());
             }
         }.start();
-
     }
 
 }

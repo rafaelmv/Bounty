@@ -7,6 +7,30 @@
     android:fitsSystemWindows="true"
     tools:context="com.equicoganador.bounty.GameActivity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#7E5AEB">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/stars" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_height="100dp"
+        android:layout_width="200dp"
+        android:src="@drawable/moon"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="50dp"/>
+
+    <ImageView
+        android:layout_height="240dp"
+        android:layout_width="390dp"
+        android:layout_marginTop="370dp"
+        android:src="@drawable/ground"/>
 
     <include layout="@layout/content_game" />
 
