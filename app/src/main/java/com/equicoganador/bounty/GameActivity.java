@@ -39,8 +39,9 @@ public class GameActivity extends Activity {
 
     private String matchId;
     private String userName;
-
     private String image;
+
+    private String theUserId;
 
     private ImageButton gameButton;
     private TextView countdownText;
@@ -130,6 +131,8 @@ public class GameActivity extends Activity {
                     @Override
                     public void run() {
                         Intent intent = new Intent(context, UserProfile.class);
+                        intent.putExtra("userId", theUserId);
+                        intent.putExtra("deleteMatch", image);
                         startActivity(intent);
                     }
                 }, 3000);
@@ -146,8 +149,10 @@ public class GameActivity extends Activity {
 
         image = getIntent().getStringExtra("image");
 
+        theUserId = getIntent().getStringExtra("theUser");
         matchId = getIntent().getStringExtra("matchId");
         userName = getIntent().getStringExtra("username");
+
         context = getBaseContext();
 
         Log.e("**********d", matchId);

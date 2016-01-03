@@ -25,7 +25,6 @@
 
             <TextView
                 android:layout_below="@id/user_image"
-                android:text="Coffi"
                 android:textAlignment="center"
                 android:textSize="30dp"
                 android:layout_width="match_parent"

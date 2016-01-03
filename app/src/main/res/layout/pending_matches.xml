@@ -61,7 +61,7 @@
             <Button
                 android:background="@color/colorPrimary"
                 android:textColor="@color/white"
-                android:text="Acept"
+                android:text="Accept"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="0.5"

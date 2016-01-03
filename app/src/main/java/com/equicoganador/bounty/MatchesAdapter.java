@@ -110,10 +110,14 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.ViewHold
         holder.acceptMatch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String theUserId = ((UserProfile)context).userId;
+
                 Intent intent = new Intent(context, GameActivity.class);
                 intent.putExtra("matchId", current[3]);
                 intent.putExtra("username", current[1]);
                 intent.putExtra("image", current[0]);
+                intent.putExtra("theUser", theUserId);
                 context.startActivity(intent);
             }
         });

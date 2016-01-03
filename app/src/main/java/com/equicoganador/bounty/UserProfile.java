@@ -47,10 +47,12 @@ public class UserProfile extends Activity {
 
     private List<String[]> matches;
 
-    private String userId;
+    public String userId;
     private String userImageUrl;
     private String username;
     private String userMoney;
+
+    private String deleteMatch = "";
 
     @Bind(R.id.user_image)
     ImageView userImage;
@@ -144,13 +146,13 @@ public class UserProfile extends Activity {
 
                             //username = "Megaman X";
                             //userMoney = "$300";
-                            userImageUrl= "http://104.131.78.147/images/" + "atthack.png";
+                            userImageUrl= "http://104.131.78.147/" + jsonResponse.getString("avatar_url");
 
                             paintUserData();
 
                         }catch (Exception e){
                             Log.d("Errors", e.toString());
-                            userImageUrl = "https://scontent.ftrc1-1.fna.fbcdn.net/hphotos-frc3/v/t1.0-9/1959353_742521712488160_2451114473736820539_n.jpg?oh=ae648ee59a414e95e822746d731d505e&oe=570D94CA";
+                            userImageUrl = "http://104.131.78.147/images/" +  "images/bounty.png";
                             userMoney = "$200";
                             username = "Coffi Rules";
                             paintUserData();
@@ -161,8 +163,7 @@ public class UserProfile extends Activity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d("Error", error.toString());
-                        Toast.makeText(context, "Servicio no disponible", Toast.LENGTH_LONG).show();
-                        userImageUrl = "https://scontent.ftrc1-1.fna.fbcdn.net/hphotos-frc3/v/t1.0-9/1959353_742521712488160_2451114473736820539_n.jpg?oh=ae648ee59a414e95e822746d731d505e&oe=570D94CA";
+                        userImageUrl = "http://104.131.78.147/images/" +  "bounty.png";
                         userMoney = "$200";
                         username = "Coffi Rules";
 
@@ -182,9 +183,20 @@ public class UserProfile extends Activity {
 
         ButterKnife.bind(this);
 
-        initializeData();
-
         context = this.getBaseContext();
+
+        Intent intent = getIntent();
+        userId = intent.getStringExtra("userId");
+
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            if (extras.containsKey("deleteMatch")) {
+                deleteMatch = extras.getString("deleteMatch");
+            }
+        }
+
+        Log.i("UNA TAG SERIA", deleteMatch + "*****");
+        initializeData();
 
         llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -196,7 +208,6 @@ public class UserProfile extends Activity {
         mAdapter = new MatchesAdapter(matches);
         recList.setAdapter(mAdapter);
 
-        String userId = getIntent().getStringExtra("userId");
         requestUserInfo(userId);
 
         new Thread(new Runnable() {
@@ -252,8 +263,10 @@ public class UserProfile extends Activity {
                         }
                 };
 
-
         for (int i=0; i < obj.length; i++){
+            if ( deleteMatch.equals(obj[i][0]))
+                continue;
+
             matches.add(obj[i]);
         }
 
