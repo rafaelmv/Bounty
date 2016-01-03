@@ -19,14 +19,13 @@
     <TextView
         android:text="0 taps"
         android:textSize="50dp"
-        android:layout_marginLeft="400px"
-        android:gravity="center"
-        android:layout_width="wrap_content"
+        android:layout_marginRight="10px"
+        android:gravity="right"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tap_text"/>
 
-    <Button
-        android:text="hola"
+    <ImageButton
         android:layout_width="200px"
         android:layout_height="200px"
         android:id="@+id/gameButton" />
@@ -37,5 +36,13 @@
         android:layout_height="200px"
         android:src="@drawable/boom"
         android:id="@+id/boom_image"/>
+
+    <TextView
+        android:text="3"
+        android:textSize="250px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:id="@+id/game_start_countdown"/>
 
 </RelativeLayout>
