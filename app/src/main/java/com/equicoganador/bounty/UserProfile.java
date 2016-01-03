@@ -27,6 +27,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONObject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -67,7 +69,9 @@ public class UserProfile extends Activity {
 
     private void requestUserInfo(String userId){
 
-        String url = "/api/players/" + userId;
+        String baseUrl = "http://19920ad2.ngrok.io/";
+        //String url = baseUrl + "api/players/" + userId;
+        String url = baseUrl + "api/players/" + "813e3143ca2af77b0921100a78676176";
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -78,9 +82,22 @@ public class UserProfile extends Activity {
                     @Override
                     public void onResponse(String response) {
                         try{
-                            if(response != ""){
-                                userImageUrl = "";
-                            }
+                            Log.d("**######**", response);
+
+                            JSONObject jsonResponse = new JSONObject(response);
+
+                            username = jsonResponse.getString("nickname");
+                            userMoney = jsonResponse.getString("money");
+
+                            org.json.JSONArray pendingMatches = jsonResponse.getJSONArray("pending_matches");
+
+                            /*for (int i=0; i < pendingMatches.length(); i++){
+                                match = []
+                                matches.add()
+                            }*/
+
+                            paintUserData();
+
                         }catch (Exception e){
                             Log.d("Errors", e.toString());
                             userImageUrl = "https://scontent.ftrc1-1.fna.fbcdn.net/hphotos-frc3/v/t1.0-9/1959353_742521712488160_2451114473736820539_n.jpg?oh=ae648ee59a414e95e822746d731d505e&oe=570D94CA";

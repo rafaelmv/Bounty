@@ -17,6 +17,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,9 +52,8 @@ public class MainActivity extends Activity {
 
     @OnClick(R.id.signupBtn)
     public void loginUserRequest(){
-        Log.i("**************", "SI");
 
-        String baseUrl = "http://localhost/";
+        String baseUrl = "http://19920ad2.ngrok.io/";
         String url = baseUrl + "api/players";
 
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -66,12 +67,13 @@ public class MainActivity extends Activity {
                     @Override
                     public void onResponse(String response) {
                         try{
-                           if(response != ""){
-                               intent.putExtra("userId", response);
-                               startActivity(intent);
-                           }
+                            JSONObject jsonResponse = new JSONObject(response);
+                            String player_id = jsonResponse.getString("id");
+                            Log.d("------Ke", player_id);
+                            intent.putExtra("userId", player_id);
+                            startActivity(intent);
                         }catch (Exception e){
-                            Log.d("Errors", e.toString());
+                            Log.d("----Errors", e.toString());
                             intent.putExtra("userId", "0");
                             startActivity(intent);
                         }
@@ -87,6 +89,7 @@ public class MainActivity extends Activity {
                     }
                 }
         ){
+
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
@@ -94,7 +97,7 @@ public class MainActivity extends Activity {
                 String username = nickname.getText().toString();
                 String phone = phoneNUmber.getText().toString();
 
-                params.put("username", username);
+                params.put("nickname", username);
                 params.put("phone", phone);
 
                 return params;
