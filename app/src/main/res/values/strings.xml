@@ -4,4 +4,5 @@
     <string name="title_activity_game">GameActivity</string>
     <string name="title">Bounty</string>
     <string name="hunter">Hunter</string>
+    <string name="title_activity_trophies">TrophiesActivity</string>
 </resources>

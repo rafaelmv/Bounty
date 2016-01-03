@@ -19,8 +19,16 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class GameActivity extends Activity {
@@ -29,6 +37,9 @@ public class GameActivity extends Activity {
     private int maxHeight;
     private int timesPressedGameButton = 0;
 
+    private String matchId;
+    private String userName;
+
     private ImageButton gameButton;
     private TextView countdownText;
     private TextView tapCounterText;
@@ -36,13 +47,57 @@ public class GameActivity extends Activity {
     private ImageView boomImage;
 
     private CountDownTimer cdt;
+    private Context context;
 
     private void paintImageFromUrl(ImageButton imageButton){
         Picasso.with(this)
                 .load("http://i.imgur.com/DvpvklR.png")
                 .resize(200, 200)
                 .centerCrop()
+                .transform(new CircleTransform())
                 .into(imageButton);
+    }
+
+    private void sendScore(){
+
+        String url = "/api/matches/" + matchId;
+
+        final String this_matchId = matchId;
+
+        RequestQueue queue = Volley.newRequestQueue(context);
+
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try{
+                            response.toString();
+                        }catch (Exception e){
+
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("******Error", error.toString());
+                        Log.i("******matchid", this_matchId);
+
+                    }
+                }
+        ){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("match_id", this_matchId);
+                params.put("score", timesPressedGameButton + "");
+                params.put("username", userName);
+                return params;
+            }
+        };
+        queue.add(stringRequest);
     }
 
     private void moveGameButtonRandomly(ImageButton gameButton, ViewGroup.MarginLayoutParams lol){
@@ -65,14 +120,14 @@ public class GameActivity extends Activity {
                 countdownText.setText("End");
                 gameButton.setOnClickListener(null);
                 gameButton.setVisibility(View.INVISIBLE);
-                startCountdown.setText("Has ganado " + timesPressedGameButton + " puntos!");
-                startCountdown.setTextSize(TypedValue.COMPLEX_UNIT_PX, 20);
+                startCountdown.setText("Obtuviste " + timesPressedGameButton + " puntos!");
+                startCountdown.setTextSize(TypedValue.COMPLEX_UNIT_PX, 40);
                 startCountdown.setVisibility(View.VISIBLE);
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(context, MainActivity.class);
+                        Intent intent = new Intent(context, UserProfile.class);
                         startActivity(intent);
                     }
                 }, 3000);
@@ -86,6 +141,12 @@ public class GameActivity extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        matchId = getIntent().getStringExtra("matchId");
+        userName = getIntent().getStringExtra("username");
+        context = getBaseContext();
+
+        Log.e("**********d", matchId);
 
         gameButton = (ImageButton)findViewById(R.id.gameButton);
         gameButton.setVisibility(View.INVISIBLE);

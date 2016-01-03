@@ -36,6 +36,28 @@
             android:layout_height="100px"
             android:id="@+id/match_user_money"/>
 
+        <LinearLayout
+            android:layout_below="@id/match_user_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:text="Dismis"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="0.5"
+                android:id="@+id/dismis_btn"/>
+            <Button
+                android:text="Acept"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="0.5"
+                android:id="@+id/acept_btn"/>
+
+        </LinearLayout>
+
+
     </RelativeLayout>
 
     </android.support.v7.widget.CardView>

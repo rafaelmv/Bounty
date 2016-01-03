@@ -99,7 +99,6 @@ public class MainActivity extends Activity {
 
                 return params;
             }
-
         };
         queue.add(stringRequest);
 

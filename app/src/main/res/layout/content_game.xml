@@ -26,6 +26,7 @@
         android:id="@+id/tap_text"/>
 
     <ImageButton
+        android:background="@color/transparent"
         android:layout_width="200px"
         android:layout_height="200px"
         android:id="@+id/gameButton" />
@@ -35,7 +36,7 @@
         android:layout_width="200px"
         android:layout_height="200px"
         android:src="@drawable/boom"
-        android:id="@+id/boom_image"/>
+        android:id="@+id/boom_image" />
 
     <TextView
         android:text="3"
